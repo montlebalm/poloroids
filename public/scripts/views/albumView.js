@@ -9,19 +9,17 @@ window.AlbumView = (function() {
 
   AlbumView.prototype = {
     load: function(album) {
-      this._clear();
-      var thumbnails = this._createThumbnails(album.photos);
+      var newPhotos = album.photos.filter(function(photo) {
+        return !document.getElementById("img-" + photo.id);
+      });
+      var thumbnails = this._createThumbnails(newPhotos);
       this._renderThumbnails(thumbnails);
-    },
-    _clear: function() {
-      while (this._dom.thumbs.firstChild) {
-        this._dom.thumbs.removeChild(this._dom.thumbs.firstChild);
-      }
     },
     _createThumbnail: function(photo) {
       var thumb = document.createElement("img");
+      thumb.id = "img-" + photo.id;
       thumb.className = "thumbnail fadeIn";
-      thumb.src = photo.small;
+      thumb.src = photo.sizes.small;
       thumb.addEventListener("click", this.onClick.bind(null, photo));
       return thumb;
     },

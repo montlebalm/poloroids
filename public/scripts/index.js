@@ -14,10 +14,12 @@
     var indexContainer = document.querySelector(".container");
     var indexView = new IndexView(indexContainer, {
       onLoad: function(album) {
+        // Allow the lightbox to self-identify next/prev photos
         lightboxView.setTraversalMethods({
           prev: album.prev.bind(album),
           next: album.next.bind(album)
         });
+
         albumView.load(album);
       },
       photoService: InstagramService

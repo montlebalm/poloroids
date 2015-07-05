@@ -22,9 +22,10 @@ window.InstagramService = (function(Album, http, Photo) {
     },
     parse: function(data) {
       return data.map(function(photo) {
-        var thumbnail = photo.images.thumbnail.url;
-        var actual = photo.images.standard_resolution.url;
-        return new Photo(thumbnail, actual);
+        return new Photo(photo.id, {
+          small: photo.images.thumbnail.url,
+          large: photo.images.standard_resolution.url
+        });
       });
     }
   };

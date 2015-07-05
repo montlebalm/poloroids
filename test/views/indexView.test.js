@@ -26,22 +26,15 @@ describe("IndexView", function() {
 
     it("shows the loading indicator", function() {
       this.view._dom = {
-        loader: {
-          classList: {
-            add: this.sandbox.spy(),
-            remove: this.sandbox.spy()
-          }
-        },
-        photosContainer: {
-          classList: {
-            add: this.sandbox.spy(),
-            remove: this.sandbox.spy()
-          }
-        }
+        loader: document.createElement("div"),
+        photosContainer: document.createElement("div")
       };
+      var loaderAdd = this.sandbox.spy(this.view._dom.loader.classList, "add");
+      var photosRemove = this.sandbox.spy(this.view._dom.photosContainer.classList, "remove");
+
       this.view.hideLoading();
-      expect(this.view._dom.loader.classList.add.calledWith("hide")).to.be.true;
-      expect(this.view._dom.photosContainer.classList.remove.calledWith("hide")).to.be.true;
+      expect(loaderAdd.calledWith("hide")).to.be.true;
+      expect(photosRemove.calledWith("hide")).to.be.true;
     });
 
   });
@@ -50,22 +43,15 @@ describe("IndexView", function() {
 
     it("hides the loading indicator", function() {
       this.view._dom = {
-        loader: {
-          classList: {
-            add: this.sandbox.spy(),
-            remove: this.sandbox.spy()
-          }
-        },
-        photosContainer: {
-          classList: {
-            add: this.sandbox.spy(),
-            remove: this.sandbox.spy()
-          }
-        }
+        loader: document.createElement("div"),
+        photosContainer: document.createElement("div")
       };
+      var loaderRemove = this.sandbox.spy(this.view._dom.loader.classList, "remove");
+      var photosAdd = this.sandbox.spy(this.view._dom.photosContainer.classList, "add");
+
       this.view.showLoading();
-      expect(this.view._dom.loader.classList.remove.calledWith("hide")).to.be.true;
-      expect(this.view._dom.photosContainer.classList.add.calledWith("hide")).to.be.true;
+      expect(loaderRemove.calledWith("hide")).to.be.true;
+      expect(photosAdd.calledWith("hide")).to.be.true;
     });
 
   });
@@ -99,6 +85,11 @@ describe("IndexView", function() {
       expect(this.view._setTitle.calledWith(this.album.title)).to.be.true;
     });
 
+    it("sets the album", function() {
+      this.view.load();
+      expect(this.view.album).to.be.defined;
+    });
+
     it("preloads the album", function() {
       this.view.load();
       expect(this.album.preload.calledWith("small")).to.be.true;
@@ -118,6 +109,40 @@ describe("IndexView", function() {
       };
       this.view.load();
       expect(this.view.hideLoading.called).to.be.true;
+    });
+
+  });
+
+  describe("loadMore()", function() {
+
+    beforeEach(function() {
+      this.view.album = {
+        add: this.sandbox.spy(),
+        preload: this.sandbox.spy()
+      };
+    });
+
+    it("adds new photos to album", function() {
+      var album = { preload: function() {} };
+      this.view.album = { add: this.sandbox.spy() };
+      this.view._photoService = {
+        query: function(callback) {
+          callback(null, album);
+        }.bind(this)
+      };
+      this.view.loadMore();
+      expect(this.view.album.add.called).to.be.true;
+    });
+
+    it("preloads the album", function() {
+      var album = { add: function() {}, preload: this.sandbox.spy() };
+      this.view._photoService = {
+        query: function(callback) {
+          callback(null, album);
+        }.bind(this)
+      };
+      this.view.loadMore();
+      expect(album.preload.called).to.be.true;
     });
 
   });

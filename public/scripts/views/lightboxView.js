@@ -62,7 +62,7 @@ window.LightboxView = (function() {
       }.bind(this));
     },
     _loaded: function(photo) {
-      this._setPhoto(photo.large);
+      this._setPhoto(photo.sizes.large);
       this._setPrevVisibility();
       this._setNextVisibility();
       this.open();

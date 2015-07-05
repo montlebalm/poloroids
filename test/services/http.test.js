@@ -9,7 +9,7 @@ describe("http", function() {
     });
 
     it("adds a script to the head", function() {
-      http.jsonp("testing", "", function() {
+      http.jsonp("", "", function() {
         var script = document.querySelector("head script");
         expect(script.src).to.eql("testing");
       });

@@ -10,9 +10,9 @@ describe("Album", function() {
     });
 
     this.album = new Album("testing", [
-      new Photo("1small", "1large"),
-      new Photo("2small", "2large"),
-      new Photo("3small", "3large")
+      new Photo("1", { small: "small", large: "large" }),
+      new Photo("2", { small: "small", large: "large" }),
+      new Photo("3", { small: "small", large: "large" })
     ]);
   });
 
@@ -23,6 +23,16 @@ describe("Album", function() {
   it("exposes public properties", function() {
     expect(this.album.title).to.be.defined;
     expect(this.album.photos).to.be.defined;
+  });
+
+  describe("add()", function() {
+
+    it("adds new photos to the album", function() {
+      var photos = [new Photo("4", { small: "small", large: "large" })];
+      this.album.add(photos);
+      expect(this.album.photos.length).to.eq(4);
+    });
+
   });
 
   describe("preload()", function() {

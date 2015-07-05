@@ -39,8 +39,18 @@ button {
 
   .container .loader {
     left: 50%;
-    margin: -60px 0 0 -60px;
+    margin: -70px 0 0 -70px;
     top: 50%;
+  }
+
+.page-header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+  .page-header .title {
+    color: white;
+    font-weight: lighter;
   }
 
 /* Photos
@@ -52,7 +62,7 @@ button {
     margin-bottom: 20px;
   }
 
-  .photos-container .title {
+  .photos-container .album-title {
     color: #777;
     font-size: 18px;
     font-weight: 300;
@@ -63,16 +73,32 @@ button {
     margin-right: 5px;
   }
 
-  .photos-container .refresh {
-    color: white;
-    cursor: pointer;
+  .photos-container footer {
+    margin-top: 20px;
+    text-align: center;
   }
+
+  .photos-container .load-more {
+    background: none;
+    border: 1px solid #DC3522;
+    border-radius: 4px;
+    color: white;
+    display: inline-block;
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+
+    .photos-container footer .load-more[disabled] {
+      border-color: #666;
+      color: #666;
+    }
 
 .thumbnails {}
 
   .thumbnails .thumbnail {
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
     height: 140px;
     margin: 5px;
     width: 140px;
@@ -83,10 +109,11 @@ button {
 
 .lightbox {
   box-shadow: 10px 10px 50px black;
+  height: 640px;
   left: 50%;
-  margin: 0 0 20px -320px;
-  position: absolute;
-  top: 100px;
+  margin: -320px 0 0 -320px;
+  position: fixed;
+  top: 50%;
   width: 640px;
   z-index: 2;
 }

@@ -6,9 +6,13 @@ window.Album = (function() {
   }
 
   Album.prototype = {
+    add: function(photos) {
+      this.photos = this.photos.concat(photos);
+    },
     preload: function(size, callback) {
       var remaining = this.photos.length;
 
+      // Preload each photo and invoke the callback when finished
       this.photos.forEach(function(photo) {
         photo.preload(size, function() {
           if (--remaining === 0) {
