@@ -1,0 +1,211 @@
+@import "font-awesome.css";
+
+body {
+  background: #1b1b1b;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Layout
+ * -------------------------------------------------------------------------- */
+
+.container {
+  margin: 100px auto;
+  min-height: 600px;
+  position: relative;
+  width: 900px;
+}
+
+  .container .loader {
+    left: 50%;
+    margin: -60px 0 0 -60px;
+    top: 50%;
+  }
+
+/* Photos
+ * -------------------------------------------------------------------------- */
+
+.photos-container {}
+
+  .photos-container header {
+    margin-bottom: 20px;
+  }
+
+  .photos-container .title {
+    color: #777;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+  }
+
+  .photos-container .album-title {
+    margin-right: 5px;
+  }
+
+  .photos-container .refresh {
+    color: white;
+    cursor: pointer;
+  }
+
+.thumbnails {}
+
+  .thumbnails .thumbnail {
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    height: 140px;
+    margin: 5px;
+    width: 140px;
+  }
+
+/* Photos
+ * -------------------------------------------------------------------------- */
+
+.lightbox {
+  box-shadow: 10px 10px 50px black;
+  left: 50%;
+  margin: 0 0 20px -320px;
+  position: absolute;
+  top: 100px;
+  width: 640px;
+  z-index: 2;
+}
+
+  .lightbox .photo {
+    border-radius: 6px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .lightbox .close {
+    background: #DC3522;
+    border: none;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    height: 40px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 40px;
+  }
+
+  .lightbox .prev,
+  .lightbox .next {
+    background: #DC3522;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    height: 80px;
+    font-family: sans-serif;
+    font-size: 24px;
+    margin-top: -40px;
+    position: absolute;
+    top: 50%;
+    width: 40px;
+  }
+
+  .lightbox .prev {
+    left: -60px;
+  }
+
+  .lightbox .next {
+    right: -60px;
+  }
+
+.lightbox-shadow {
+  background: black;
+  bottom: 0;
+  left: 0;
+  opacity: 0.6;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+/* Loader
+ * -------------------------------------------------------------------------- */
+
+.loader {
+  animation: load8 1.1s infinite linear;
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #ffffff;
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  font-size: 10px;
+  margin: 60px auto;
+  position: absolute;
+  text-indent: -9999em;
+  transform: translateZ(0);
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+@-webkit-keyframes load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fade
+ * -------------------------------------------------------------------------- */
+
+.fadeIn {
+  animation: fadein 0.25s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Misc
+ * -------------------------------------------------------------------------- */
+
+.hide {
+  display: none;
+}

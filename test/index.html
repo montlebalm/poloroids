@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <!-- Test -->
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/sinon/pkg/sinon.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <script>
+      function assert(expr, msg) {
+        if (!expr) throw new Error(msg || 'failed');
+      }
+    </script>
+    <!-- Lib -->
+    <script src="../public/scripts/models/album.js"></script>
+    <script src="../public/scripts/models/photo.js"></script>
+    <script src="../public/scripts/services/http.js"></script>
+    <script src="../public/scripts/services/instagramService.js"></script>
+    <script src="../public/scripts/views/albumView.js"></script>
+    <script src="../public/scripts/views/indexView.js"></script>
+    <script src="../public/scripts/views/lightboxView.js"></script>
+    <!-- Specs -->
+    <script src="./models/album.test.js"></script>
+    <script src="./models/photo.test.js"></script>
+    <script src="./services/http.test.js"></script>
+    <script src="./services/instagramService.test.js"></script>
+    <script src="./views/albumView.test.js"></script>
+    <script src="./views/indexView.test.js"></script>
+    <script src="./views/lightboxView.test.js"></script>
+    <script>
+      window.expect = chai.expect;
+
+      onload = function(){
+        var runner = mocha.run();
+      };
+    </script>
+  </body>
+</html>
