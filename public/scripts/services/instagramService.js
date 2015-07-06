@@ -23,8 +23,13 @@ window.InstagramService = (function(Album, http, Photo) {
     parse: function(data) {
       return data.map(function(photo) {
         return new Photo(photo.id, {
-          small: photo.images.thumbnail.url,
-          large: photo.images.standard_resolution.url
+          author: photo.user.username,
+          createdDate: new Date(photo.created_time * 1000),
+          sizes: {
+            small: photo.images.thumbnail.url,
+            large: photo.images.standard_resolution.url
+          },
+          title: photo.caption ? photo.caption.text : "Photo from " + photo.user.username
         });
       });
     }

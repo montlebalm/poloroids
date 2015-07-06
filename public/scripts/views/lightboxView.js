@@ -6,12 +6,13 @@ window.LightboxView = (function() {
 
   function LightboxView(el) {
     this._dom = {
-      close: el.querySelector(".close"),
+      detail: el.querySelector(".detail"),
       lightbox: el.querySelector(".lightbox"),
       next: el.querySelector(".next"),
       photo: el.querySelector(".photo"),
       prev: el.querySelector(".prev"),
-      shadow: el.querySelector(".lightbox-shadow")
+      shadow: el.querySelector(".lightbox-shadow"),
+      title: el.querySelector(".title")
     };
     this._bindEvents();
   }
@@ -42,7 +43,6 @@ window.LightboxView = (function() {
     _bindEvents: function() {
       this._dom.prev.addEventListener("click", this._prevPhoto.bind(this));
       this._dom.next.addEventListener("click", this._nextPhoto.bind(this));
-      this._dom.close.addEventListener("click", this.close.bind(this));
       this._dom.shadow.addEventListener("click", this.close.bind(this));
 
       window.addEventListener("keydown", function(e) {
@@ -61,8 +61,22 @@ window.LightboxView = (function() {
         }
       }.bind(this));
     },
+    _formatDate: function(date) {
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      var dateStr = day + "/" + month + "/" + year;
+
+      var meridiem = (date.getHours() < 12) ? "am" : "pm";
+      var hour = date.getHours() % 12;
+      var minutes = date.getMinutes();
+      minutes = (minutes < 10) ? "0" + minutes : minutes;
+      var timeStr = hour + ":" + minutes + meridiem;
+
+      return dateStr + " @" + timeStr;
+    },
     _loaded: function(photo) {
-      this._setPhoto(photo.sizes.large);
+      this._setPhoto(photo);
       this._setPrevVisibility();
       this._setNextVisibility();
       this.open();
@@ -84,8 +98,10 @@ window.LightboxView = (function() {
         this._dom.next.classList.add("hide");
       }
     },
-    _setPhoto: function(src) {
-      this._dom.photo.src = src;
+    _setPhoto: function(photo) {
+      this._dom.photo.src = photo.sizes.large;
+      this._dom.title.textContent = photo.title;
+      this._dom.detail.textContent = this._formatDate(photo.createdDate);
     },
     _setPrevVisibility: function() {
       if (this.prev) {

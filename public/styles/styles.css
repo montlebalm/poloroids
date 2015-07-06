@@ -1,5 +1,3 @@
-@import "font-awesome.css";
-
 body {
   background: #1b1b1b;
   font-family: 'Helvetica', 'Arial', sans-serif;
@@ -45,7 +43,9 @@ button {
 
 .page-header {
   margin-bottom: 40px;
+  position: relative;
   text-align: center;
+  z-index: 2;
 }
 
   .page-header .title {
@@ -108,10 +108,11 @@ button {
  * -------------------------------------------------------------------------- */
 
 .lightbox {
+  background: white;
   box-shadow: 10px 10px 50px black;
-  height: 640px;
   left: 50%;
-  margin: -320px 0 0 -320px;
+  margin: -320px 0 0 -340px;
+  padding: 20px;
   position: fixed;
   top: 50%;
   width: 640px;
@@ -119,24 +120,25 @@ button {
 }
 
   .lightbox .photo {
-    border-radius: 6px;
     height: 100%;
     width: 100%;
   }
 
-  .lightbox .close {
-    background: #DC3522;
-    border: none;
-    border-bottom-left-radius: 6px;
-    border-top-right-radius: 6px;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    height: 40px;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    width: 40px;
+  .lightbox .title-wrapper {
+    margin: 10px 0;
+    max-height: 60px;
+    overflow: auto;
+  }
+
+  .lightbox .title {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 20px;
+  }
+
+  .lightbox .detail {
+    color: #999;
+    font-size: 12px;
   }
 
   .lightbox .prev,
@@ -148,9 +150,8 @@ button {
     height: 80px;
     font-family: sans-serif;
     font-size: 24px;
-    margin-top: -40px;
     position: absolute;
-    top: 50%;
+    top: 300px;
     width: 40px;
   }
 
@@ -166,7 +167,7 @@ button {
   background: black;
   bottom: 0;
   left: 0;
-  opacity: 0.6;
+  opacity: 0.8;
   position: fixed;
   right: 0;
   top: 0;

@@ -1,8 +1,11 @@
 window.Photo = (function() {
 
-  function Photo(id, sizes) {
+  function Photo(id, params) {
     this.id = id;
-    this.sizes = sizes;
+    this.author = params.author;
+    this.createdDate = params.createdDate;
+    this.sizes = params.sizes;
+    this.title = params.title;
   }
 
   Photo.prototype = {

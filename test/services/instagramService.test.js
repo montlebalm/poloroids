@@ -47,6 +47,9 @@ describe("InstagramService", function() {
 
     it("returns an array of Photo objects", function() {
       var data = [{
+        user: {
+          username: "user"
+        },
         images: {
           thumbnail: {
             url: "thumbnail"
