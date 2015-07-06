@@ -16,7 +16,7 @@ window.InstagramService = (function(Album, http, Photo) {
         }
 
         var photos = this.parse(res.data);
-        var album = new Album("Instagram Popular", photos);
+        var album = new Album("Popular on Instagram", photos);
         callback(null, album);
       }.bind(this));
     },
