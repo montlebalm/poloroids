@@ -17,10 +17,6 @@ a {
   text-decoration: none;
 }
 
-ul {
-  margin: 0;
-}
-
 button {
   cursor: pointer;
 }
@@ -29,10 +25,14 @@ button {
  * -------------------------------------------------------------------------- */
 
 .container {
+  box-sizing: border-box;
   margin: 100px auto;
   min-height: 600px;
+  padding: 0 40px;
   position: relative;
-  width: 900px;
+  max-width: 980px;
+  min-width: 830px;
+  width: 100%;
 }
 
   .container .loader {
@@ -43,9 +43,7 @@ button {
 
 .page-header {
   margin-bottom: 40px;
-  position: relative;
   text-align: center;
-  z-index: 2;
 }
 
   .page-header .title {
@@ -67,6 +65,7 @@ button {
     font-size: 18px;
     font-weight: 300;
     line-height: 24px;
+    text-align: center;
   }
 
   .photos-container .album-title {
@@ -93,7 +92,9 @@ button {
       color: #666;
     }
 
-.thumbnails {}
+.thumbnails {
+  text-align: center;
+}
 
   .thumbnails .thumbnail {
     border-radius: 5px;
@@ -111,7 +112,7 @@ button {
   background: white;
   box-shadow: 10px 10px 50px black;
   left: 50%;
-  margin: -320px 0 0 -340px;
+  margin: -340px 0 0 -340px;
   padding: 20px;
   position: fixed;
   top: 50%;
@@ -120,7 +121,6 @@ button {
 }
 
   .lightbox .photo {
-    height: 100%;
     width: 100%;
   }
 
