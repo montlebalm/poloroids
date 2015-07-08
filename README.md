@@ -2,4 +2,4 @@
 
 Poloroids is a responsive web site for viewing current popular photos on Instagram.
 
-!(Poloroids)[/screenshot.png]
+![Poloroids](/screenshot.png)
