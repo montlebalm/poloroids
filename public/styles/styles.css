@@ -120,7 +120,7 @@ button {
   background: white;
   box-shadow: 10px 10px 50px black;
   left: 50%;
-  margin: -360px 0 0 -340px;
+  margin: -380px 0 0 -340px;
   padding: 20px;
   position: fixed;
   top: 50%;
@@ -289,11 +289,8 @@ button {
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
 
-  body {
-    font-size: 1em;
-  }
-
   .container {
+    margin-bottom: 50px;
     margin-top: 50px;
     padding: 10px;
   }
@@ -301,7 +298,7 @@ button {
   .page-header {}
 
     .page-header img {
-      width: 40px;
+      width: 30px;
     }
 
   .photos-wrapper {}
