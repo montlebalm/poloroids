@@ -6,11 +6,12 @@ describe("IndexView", function() {
     IndexView.prototype._bindEvents = this.sandbox.spy();
     IndexView.prototype._setTitle = this.sandbox.spy();
 
+    this.onLoad = this.sandbox.spy();
     this.view = new IndexView(document.body, {
       photoService: {
         query: function() {}
       },
-      onLoad: this.sandbox.spy()
+      onLoad: this.onLoad
     });
   });
 
@@ -24,34 +25,24 @@ describe("IndexView", function() {
 
   describe("hideLoading()", function() {
 
-    it("shows the loading indicator", function() {
-      this.view._dom = {
-        loader: document.createElement("div"),
-        photosWrapper: document.createElement("div")
-      };
-      var loaderAdd = this.sandbox.spy(this.view._dom.loader.classList, "add");
-      var photosRemove = this.sandbox.spy(this.view._dom.photosWrapper.classList, "remove");
-
+    it("shows the loader", function() {
+      var loader = this.view._dom.loader = document.createElement("div");
+      var photosWrapper = this.view._dom.photosWrapper = document.createElement("div");
       this.view.hideLoading();
-      expect(loaderAdd.calledWith("hide")).to.be.true;
-      expect(photosRemove.calledWith("hide")).to.be.true;
+      expect(loader.classList.contains("hide")).to.be.true;
+      expect(photosWrapper.classList.contains("hide")).to.be.false;
     });
 
   });
 
   describe("showLoading()", function() {
 
-    it("hides the loading indicator", function() {
-      this.view._dom = {
-        loader: document.createElement("div"),
-        photosWrapper: document.createElement("div")
-      };
-      var loaderRemove = this.sandbox.spy(this.view._dom.loader.classList, "remove");
-      var photosAdd = this.sandbox.spy(this.view._dom.photosWrapper.classList, "add");
-
+    it("hides the loader", function() {
+      var loader = this.view._dom.loader = document.createElement("div");
+      var photosWrapper = this.view._dom.photosWrapper = document.createElement("div");
       this.view.showLoading();
-      expect(loaderRemove.calledWith("hide")).to.be.true;
-      expect(photosAdd.calledWith("hide")).to.be.true;
+      expect(loader.classList.contains("hide")).to.be.false;
+      expect(photosWrapper.classList.contains("hide")).to.be.true;
     });
 
   });
@@ -70,7 +61,7 @@ describe("IndexView", function() {
       this.view.hideLoading = this.sandbox.spy();
     });
 
-    it("shows a loading indicator", function() {
+    it("shows the loader", function() {
       this.view.load();
       expect(this.view.showLoading.called).to.be.true;
     });
@@ -100,10 +91,10 @@ describe("IndexView", function() {
         callback();
       };
       this.view.load();
-      expect(this.view._onLoad.called).to.be.true;
+      expect(this.onLoad.called).to.be.true;
     });
 
-    it("hides loading indicator on album preload", function() {
+    it("hides loader on album preload", function() {
       this.album.preload = function(size, callback) {
         callback();
       };

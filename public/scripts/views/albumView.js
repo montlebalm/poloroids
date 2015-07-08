@@ -19,7 +19,7 @@ window.AlbumView = (function() {
       this._renderInto(this._dom.thumbs, thumbnails);
 
       // Render the thumbnails used on large viewports
-      var fulls = newPhotos.map(this._createFullSize.bind(this));
+      var fulls = newPhotos.map(this._createFullThumbnail.bind(this));
       this._renderInto(this._dom.fulls, fulls);
     },
     _createThumbnail: function(photo) {
@@ -30,7 +30,7 @@ window.AlbumView = (function() {
       thumb.addEventListener("click", this.onClick.bind(null, photo));
       return thumb;
     },
-    _createFullSize: function(photo) {
+    _createFullThumbnail: function(photo) {
       var fullSize = document.createElement("div");
       fullSize.className = "photo";
       fullSize.style.backgroundImage = "url(" + photo.sizes.large + ")";

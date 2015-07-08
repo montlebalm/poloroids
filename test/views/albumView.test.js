@@ -15,10 +15,9 @@ describe("AlbumView", function() {
   describe("load()", function() {
 
     it("renders new thumbnails", function() {
-      var album = { photos: [] };
-      var renderThumbnails = this.sandbox.stub(this.view, "_renderThumbnails");
-      this.view.load(album);
-      expect(renderThumbnails.called).to.be.true;
+      var renderInto = this.sandbox.stub(this.view, "_renderInto");
+      this.view.load({ photos: [] });
+      expect(renderInto.called).to.be.true;
     });
 
   });

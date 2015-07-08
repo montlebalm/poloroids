@@ -19,22 +19,11 @@ describe("LightboxView", function() {
   describe("close()", function() {
 
     it("hides the lightbox and shadow", function() {
-      this.view._dom = {
-        lightbox: {
-          classList: {
-            add: this.sandbox.spy(),
-            remove: this.sandbox.spy()
-          }
-        },
-        shadow: {
-          classList: {
-            add: this.sandbox.spy()
-          }
-        }
-      };
+      var lightbox = this.view._dom.lightbox = document.createElement("div");
+      var shadow = this.view._dom.shadow = document.createElement("div");
       this.view.close();
-      expect(this.view._dom.lightbox.classList.add.calledWith("hide")).to.be.true;
-      expect(this.view._dom.shadow.classList.add.calledWith("hide")).to.be.true;
+      expect(lightbox.classList.contains("hide")).to.be.true;
+      expect(shadow.classList.contains("hide")).to.be.true;
     });
 
   });
@@ -42,24 +31,15 @@ describe("LightboxView", function() {
   describe("isOpen()", function() {
 
     it("returns true when lightbox is open", function() {
-      this.view._dom.lightbox = {
-        classList: {
-          contains: function() {
-            return false;
-          }
-        }
-      };
+      var lightbox = document.createElement("div");
+      this.view._dom.lightbox = lightbox;
       expect(this.view.isOpen()).to.be.true;
     });
 
     it("returns false when lightbox is closed", function() {
-      this.view._dom.lightbox = {
-        classList: {
-          contains: function() {
-            return true;
-          }
-        }
-      };
+      var lightbox = document.createElement("div");
+      lightbox.classList.add("hide");
+      this.view._dom.lightbox = lightbox;
       expect(this.view.isOpen()).to.be.false;
     });
 
@@ -75,8 +55,7 @@ describe("LightboxView", function() {
     });
 
     it("sets new next and previous photos", function() {
-      var photo = { preload: function() {} };
-      this.view.load(photo);
+      this.view.load({ preload: function() {} });
       expect(this.view.next).to.equal(this.next);
       expect(this.view.prev).to.equal(this.prev);
     });
@@ -92,22 +71,11 @@ describe("LightboxView", function() {
   describe("open()", function() {
 
     it("hides the lightbox and shadow", function() {
-      this.view._dom = {
-        lightbox: {
-          classList: {
-            add: this.sandbox.spy(),
-            remove: this.sandbox.spy()
-          }
-        },
-        shadow: {
-          classList: {
-            remove: this.sandbox.spy()
-          }
-        }
-      };
+      var lightbox = this.view._dom.lightbox = document.createElement("div");
+      var shadow = this.view._dom.shadow = document.createElement("div");
       this.view.open();
-      expect(this.view._dom.lightbox.classList.remove.calledWith("hide")).to.be.true;
-      expect(this.view._dom.shadow.classList.remove.calledWith("hide")).to.be.true;
+      expect(lightbox.classList.contains("hide")).to.be.false;
+      expect(shadow.classList.contains("hide")).to.be.false;
     });
 
   });
