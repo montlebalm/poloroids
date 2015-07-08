@@ -9,7 +9,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: lighter;
   margin: 0;
 }
 
@@ -27,17 +28,16 @@ button {
 .container {
   box-sizing: border-box;
   margin: 100px auto;
+  max-width: 980px;
   min-height: 600px;
   padding: 0 40px;
   position: relative;
-  max-width: 980px;
-  min-width: 830px;
   width: 100%;
 }
 
   .container .loader {
     left: 50%;
-    margin: -70px 0 0 -70px;
+    margin: -50px 0 0 -70px;
     top: 50%;
   }
 
@@ -48,46 +48,40 @@ button {
 
   .page-header .title {
     color: white;
-    font-weight: lighter;
   }
 
 /* Photos
  * -------------------------------------------------------------------------- */
 
-.photos-container {}
+.photos-wrapper {}
 
-  .photos-container header {
+  .photos-wrapper header {
     margin-bottom: 20px;
   }
 
-  .photos-container .album-title {
-    color: #777;
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 24px;
-    text-align: center;
-  }
-
-  .photos-container .album-title {
-    margin-right: 5px;
-  }
-
-  .photos-container footer {
+  .photos-wrapper footer {
     margin-top: 20px;
     text-align: center;
   }
 
-  .photos-container .load-more {
+  .photos-wrapper .album-title {
+    color: #777;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    text-align: center;
+  }
+
+  .photos-wrapper .load-more {
     background: none;
     border: 1px solid #DC3522;
     border-radius: 4px;
     color: white;
     display: inline-block;
-    font-size: 14px;
+    font-size: 1em;
     padding: 10px 15px;
   }
 
-    .photos-container footer .load-more[disabled] {
+    .photos-wrapper .load-more[disabled] {
       border-color: #666;
       color: #666;
     }
@@ -105,14 +99,28 @@ button {
     width: 140px;
   }
 
-/* Photos
+.thumbnails-full {
+  display: none;
+}
+
+  .thumbnails-full .photo {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    display: block;
+    height: 280px;
+    margin: 0 auto 10px;
+    width: 280px;
+  }
+
+/* Lightbox
  * -------------------------------------------------------------------------- */
 
 .lightbox {
   background: white;
   box-shadow: 10px 10px 50px black;
   left: 50%;
-  margin: -340px 0 0 -340px;
+  margin: -360px 0 0 -340px;
   padding: 20px;
   position: fixed;
   top: 50%;
@@ -148,8 +156,8 @@ button {
     border-radius: 4px;
     color: white;
     height: 80px;
-    font-family: sans-serif;
     font-size: 24px;
+    line-height: 80px;
     position: absolute;
     top: 300px;
     width: 40px;
@@ -175,12 +183,14 @@ button {
 }
 
 /* Loader
+ * http://projects.lukehaas.me/css-loaders/
  * -------------------------------------------------------------------------- */
 
 .loader {
   animation: load8 1.1s infinite linear;
+  -webkit-animation: load8 1.1s infinite linear;
   border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
-  border-left: 1.1em solid #ffffff;
+  border-left: 1.1em solid white;
   border-right: 1.1em solid rgba(255, 255, 255, 0.2);
   border-top: 1.1em solid rgba(255, 255, 255, 0.2);
   font-size: 10px;
@@ -197,15 +207,6 @@ button {
   width: 120px;
 }
 
-@-webkit-keyframes load8 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes load8 {
   0% {
     transform: rotate(0deg);
@@ -215,14 +216,33 @@ button {
   }
 }
 
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
 /* Fade
  * -------------------------------------------------------------------------- */
 
 .fadeIn {
   animation: fadein 0.25s;
+  -webkit-animation: fadein 0.25s;
 }
 
 @keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
   from {
     opacity: 0;
   }
@@ -236,4 +256,75 @@ button {
 
 .hide {
   display: none;
+}
+
+/* Responsive
+ * -------------------------------------------------------------------------- */
+
+@media (max-width: 800px) {
+
+  .lightbox {
+    margin-left: -220px;
+    width: 400px;
+  }
+
+    .lightbox .next,
+    .lightbox .prev {
+      bottom: -60px;
+      height: 40px;
+      line-height: 40px;
+      top: auto;
+      width: 45%;
+    }
+
+    .lightbox .next {
+      right: 0;
+    }
+
+    .lightbox .prev {
+      left: 0;
+    }
+
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+
+  body {
+    font-size: 1em;
+  }
+
+  .container {
+    margin-top: 50px;
+    padding: 10px;
+  }
+
+  .page-header {}
+
+    .page-header img {
+      width: 40px;
+    }
+
+  .photos-wrapper {}
+
+    .photos-wrapper .album-title {
+      margin-bottom: 40px;
+    }
+
+    .photos-wrapper .load-more {
+      margin-top: 40px;
+    }
+
+  .thumbnails {
+    display: none;
+  }
+
+  .thumbnails-full {
+    display: block;
+  }
+
+  .lightbox,
+  .lightbox-shadow {
+    display: none;
+  }
+
 }

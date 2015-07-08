@@ -27,10 +27,10 @@ describe("IndexView", function() {
     it("shows the loading indicator", function() {
       this.view._dom = {
         loader: document.createElement("div"),
-        photosContainer: document.createElement("div")
+        photosWrapper: document.createElement("div")
       };
       var loaderAdd = this.sandbox.spy(this.view._dom.loader.classList, "add");
-      var photosRemove = this.sandbox.spy(this.view._dom.photosContainer.classList, "remove");
+      var photosRemove = this.sandbox.spy(this.view._dom.photosWrapper.classList, "remove");
 
       this.view.hideLoading();
       expect(loaderAdd.calledWith("hide")).to.be.true;
@@ -44,10 +44,10 @@ describe("IndexView", function() {
     it("hides the loading indicator", function() {
       this.view._dom = {
         loader: document.createElement("div"),
-        photosContainer: document.createElement("div")
+        photosWrapper: document.createElement("div")
       };
       var loaderRemove = this.sandbox.spy(this.view._dom.loader.classList, "remove");
-      var photosAdd = this.sandbox.spy(this.view._dom.photosContainer.classList, "add");
+      var photosAdd = this.sandbox.spy(this.view._dom.photosWrapper.classList, "add");
 
       this.view.showLoading();
       expect(loaderRemove.calledWith("hide")).to.be.true;

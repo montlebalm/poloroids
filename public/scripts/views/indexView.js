@@ -6,7 +6,7 @@ window.IndexView = (function() {
     this._dom = {
       loader: el.querySelector(".loader"),
       loadMore: el.querySelector(".load-more"),
-      photosContainer: el.querySelector(".photos-container"),
+      photosWrapper: el.querySelector(".photos-wrapper"),
       title: el.querySelector(".album-title")
     };
     this._bindEvents();
@@ -15,7 +15,7 @@ window.IndexView = (function() {
   IndexView.prototype = {
     hideLoading: function() {
       this._dom.loader.classList.add("hide");
-      this._dom.photosContainer.classList.remove("hide");
+      this._dom.photosWrapper.classList.remove("hide");
     },
     load: function() {
       this.showLoading();
@@ -26,7 +26,7 @@ window.IndexView = (function() {
     },
     showLoading: function() {
       this._dom.loader.classList.remove("hide");
-      this._dom.photosContainer.classList.add("hide");
+      this._dom.photosWrapper.classList.add("hide");
     },
     _bindEvents: function() {
       this._dom.loadMore.addEventListener("click", function(e) {

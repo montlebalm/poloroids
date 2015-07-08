@@ -8,9 +8,9 @@ describe("Photo", function() {
 
     this.photo = new Photo("1", {
       author: this.author,
-      createdDate: this.createdDate;
-      sizes: this.sizes;
-      title: this.title;
+      createdDate: this.createdDate,
+      sizes: this.sizes,
+      title: this.title
     });
   });
 

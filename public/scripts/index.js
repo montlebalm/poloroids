@@ -1,10 +1,10 @@
 (function(AlbumView, IndexView, InstagramService, LightboxView) {
 
   window.onload = function() {
-    var lightboxContainer = document.querySelector(".lightbox-container");
+    var lightboxContainer = document.querySelector(".lightbox-wrapper");
     var lightboxView = new LightboxView(lightboxContainer);
 
-    var albumContainer = document.querySelector(".photos-container");
+    var albumContainer = document.querySelector(".photos-wrapper");
     var albumView = new AlbumView(albumContainer, {
       onClick: function(photo) {
         lightboxView.load(photo);
