@@ -7,7 +7,11 @@ window.Album = (function() {
 
   Album.prototype = {
     add: function(photos) {
-      this.photos = this.photos.concat(photos);
+      var ids = this.photos.map(function(photo) { return photo.id; });
+      var newPhotos = photos.filter(function(photo) {
+        return ids.indexOf(photo.id) === -1;
+      });
+      this.photos = this.photos.concat(newPhotos);
     },
     preload: function(size, callback) {
       var remaining = this.photos.length;

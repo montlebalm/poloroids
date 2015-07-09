@@ -33,6 +33,12 @@ describe("Album", function() {
       expect(this.album.photos.length).to.eq(4);
     });
 
+    it("doesn't add duplicates", function() {
+      var photos = [new Photo("1", { small: "small", large: "large" })];
+      this.album.add(photos);
+      expect(this.album.photos.length).to.eq(3);
+    });
+
   });
 
   describe("preload()", function() {

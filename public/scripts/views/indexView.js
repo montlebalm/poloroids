@@ -43,9 +43,9 @@ window.IndexView = (function() {
       if (err) { return this._handleError(err); }
 
       this.album = album;
-      this._setTitle(album.title);
+      this._setTitle(this.album.title);
 
-      album.preload("small", function() {
+      this.album.preload("small", function() {
         this._onLoad(this.album);
         this.hideLoading();
       }.bind(this));
@@ -55,7 +55,7 @@ window.IndexView = (function() {
 
       this.album.add(album.photos);
 
-      album.preload("small", function() {
+      this.album.preload("small", function() {
         this._onLoad(this.album);
         this._dom.loadMore.removeAttribute("disabled");
       }.bind(this));
