@@ -83,7 +83,7 @@ describe("IndexView", function() {
 
     it("preloads the album", function() {
       this.view.load();
-      expect(this.album.preload.calledWith("small")).to.be.true;
+      expect(this.view.album.preload.calledWith("small")).to.be.true;
     });
 
     it("invokes 'onLoad' on album preload", function() {
@@ -114,11 +114,13 @@ describe("IndexView", function() {
     });
 
     it("adds new photos to album", function() {
-      var album = { preload: function() {} };
-      this.view.album = { add: this.sandbox.spy() };
+      this.view.album = {
+        add: this.sandbox.spy(),
+        preload: function() {}
+      };
       this.view._photoService = {
         query: function(callback) {
-          callback(null, album);
+          callback(null, { photos: [] });
         }.bind(this)
       };
       this.view.loadMore();
@@ -126,14 +128,17 @@ describe("IndexView", function() {
     });
 
     it("preloads the album", function() {
-      var album = { add: function() {}, preload: this.sandbox.spy() };
+      this.view.album = {
+        add: function() {},
+        preload: this.sandbox.spy()
+      };
       this.view._photoService = {
         query: function(callback) {
-          callback(null, album);
+          callback(null, { photos: [] });
         }.bind(this)
       };
       this.view.loadMore();
-      expect(album.preload.called).to.be.true;
+      expect(this.view.album.preload.called).to.be.true;
     });
 
   });
