@@ -36,7 +36,7 @@ window.IndexView = (function() {
       }.bind(this));
     },
     _handleError: function(err) {
-      var msg = 'Look what you\'ve done.\nError: "' + err + '"';
+      var msg = "Look what you\'ve done.\nError: \"" + err + "\"";
       alert(msg);
     },
     _loaded: function(err, album) {

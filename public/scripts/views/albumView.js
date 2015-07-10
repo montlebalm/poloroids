@@ -40,7 +40,7 @@ window.AlbumView = (function() {
       return photos.map(this._createThumbnail.bind(this));
     },
     _renderInto: function(container, els) {
-      els.forEach(container.appendChild.bind(container));;
+      els.forEach(container.appendChild.bind(container));
     }
   };
 
